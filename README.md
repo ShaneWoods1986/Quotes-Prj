@@ -28,3 +28,12 @@ To get more help on the Angular CLI use `ng help` or go check out the [Angular C
 
 ## Notes
 The aim is to demonstrate good structure using NgRx for everything, with lazy loaded routes, abstracted apis which can be reused differently with the same component.
+
+Two routes- http://localhost:4200/kanye, which delivers a Kanye West quote on clicking the button using only Ngrx.
+
+http://localhost:4200/random uses the same module with the UI and store, but injects a different api and Title.
+
+In order to test error handling, 30% of the time an error is thrown, opening a toast
+
+TODO:
+Route effects

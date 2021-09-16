@@ -11,7 +11,7 @@ import { RandomQuoteApiService } from './random-quote.api.service';
   ],
   providers: [
       { provide: QuoteApi, useClass: RandomQuoteApiService },
-      { provide: "TITLE", useValue: "Quotations" }
+      { provide: 'TITLE', useValue: "Quotations" }
   ]
 })
-export class AppModule { }
+export class RandomQuoteModule { }

@@ -2,7 +2,7 @@ import { NgModule } from '@angular/core';
 
 import { QuoteModule } from '../quote/quote.module';
 import { QuoteApi } from '../quote/quote.api';
-import { KanyeQuoteApiService } from './kanye.api.service';
+import { KanyeApiService } from './kanye.api.service';
 
 @NgModule({
   declarations: [],
@@ -10,8 +10,8 @@ import { KanyeQuoteApiService } from './kanye.api.service';
     QuoteModule
   ],
   providers: [
-      { provide: QuoteApi, useClass: KanyeQuoteApiService },
-      { provide: "TITLE", useValue: "Kanye's Wisdom" }
+      { provide: QuoteApi, useClass: KanyeApiService },
+      { provide: 'TITLE', useValue: "Kanye's Wisdom" }
   ]
 })
-export class AppModule { }
+export class KanyeModule { }

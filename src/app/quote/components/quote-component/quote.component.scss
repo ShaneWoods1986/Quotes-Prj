@@ -1,0 +1,27 @@
+.kanye-quotes {
+    margin-left: 2em;
+    mat-card, .mat-button {
+        margin-top: 1em;
+    }
+    mat-card {
+        max-width: 400px;
+        background-color: #ccddff;
+        border-radius: 4px;
+        text-align: center;
+    }
+    mat-card:nth-of-type(even) {
+        background-color: #e0e0eb;
+    }
+    .subtle {
+        background-color: transparent!important;
+        box-shadow: none;
+    }
+
+    mat-spinner {
+        margin-left: auto;
+        margin-right: auto;
+    }
+    button {
+        margin-top: 1em;
+    }
+}
