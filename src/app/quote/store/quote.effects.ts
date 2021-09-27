@@ -1,9 +1,11 @@
 import { Injectable } from '@angular/core';
 import { Actions, createEffect, ofType } from '@ngrx/effects';
+import { RouterNavigationAction, ROUTER_NAVIGATION } from '@ngrx/router-store';
 import { of } from 'rxjs';
-import { map, mergeMap, catchError, tap, delay } from 'rxjs/operators';
+import { map, mergeMap, catchError, tap, delay, filter } from 'rxjs/operators';
 import { ToastrService } from 'ngx-toastr';
 
+import { MergedRoute } from './merged-route';
 import { QuoteApi } from '../quote.api';
 import { quoteActions } from './quote.actions';
 
@@ -16,7 +18,7 @@ export class QuoteEffects {
                 private toastr: ToastrService
                 ) {}
 
-    initialLoad$ = createEffect(() => this.actions.pipe(
+    load$ = createEffect(() => this.actions.pipe(
         ofType(quoteActions.load),
         delay(200),
         mergeMap(() => this.apiService.getQuote()
@@ -34,5 +36,16 @@ export class QuoteEffects {
                          return of(quoteActions.error())
                      })
                  ))
-    ))
+    ));
+
+    navigated$ = createEffect(() => this.actions.pipe(
+        ofType<RouterNavigationAction<MergedRoute>>(ROUTER_NAVIGATION),
+        filter((action) => {
+            const state: MergedRoute = action.payload.routerState;
+            return state.url.includes('kanye') || state.url.includes('random');
+        }),
+        map(() => quoteActions.load())
+    )
+    );
+
 }
