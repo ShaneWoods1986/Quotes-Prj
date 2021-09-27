@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { Actions, createEffect, ofType } from '@ngrx/effects';
 import { of } from 'rxjs';
-import { map, mergeMap, catchError, tap } from 'rxjs/operators';
+import { map, mergeMap, catchError, tap, delay } from 'rxjs/operators';
 import { ToastrService } from 'ngx-toastr';
 
 import { QuoteApi } from '../quote.api';
@@ -18,6 +18,7 @@ export class QuoteEffects {
 
     initialLoad$ = createEffect(() => this.actions.pipe(
         ofType(quoteActions.load),
+        delay(200),
         mergeMap(() => this.apiService.getQuote()
                  .pipe(
                      tap(()=> {

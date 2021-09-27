@@ -1,17 +1,24 @@
 <div class="kanye-quotes">
     <h1>{{ title }}</h1>
+    <div *ngIf="vm$ |async as vm else loading">
+        <mat-card *ngFor="let quote of vm.quotes">
+            <mat-card-content>
+            {{ quote }}
+            </mat-card-content>
+        </mat-card>
 
-    <mat-card *ngFor="let quote of allQuotes">
-        <mat-card-content>
-        {{ quote }}
-        </mat-card-content>
-    </mat-card>
+        <mat-card class="subtle">
+            <mat-spinner diameter="50" *ngIf="vm.loading"></mat-spinner>
+            <button mat-raised-button color="primary" (click)="getNewQuote()">More Wisdom!</button>
+        </mat-card>
 
-    <mat-card class="subtle">
-        <mat-spinner diameter="50" *ngIf="loadingResults"></mat-spinner>
+    </div>
 
-        <button mat-raised-button color="primary" (click)="getNewQuote()">More Wisdom!</button>
-    </mat-card>
-
-
+    <ng-template #loading>
+        <mat-card class="subtle">
+            <mat-spinner diameter="50"></mat-spinner>
+        </mat-card>
+    </ng-template>
 </div>
+
+
